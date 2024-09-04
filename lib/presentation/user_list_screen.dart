@@ -5,6 +5,12 @@ class UserListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [Text('user list screen')],
+        ),
+      ),
+    );
   }
 }
