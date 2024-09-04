@@ -1,4 +1,6 @@
+import 'package:acote/presentation/user_list/ad_banner_item_widget.dart';
 import 'package:acote/presentation/user_list/user_list_item_widget.dart';
+import 'package:acote/routes/github_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/user_list_controller.dart';
@@ -43,17 +45,31 @@ class _UserListScreenState extends State<UserListScreen> {
                       )
                     : ListView.builder(
                         controller: scrollController,
-                        itemCount: controller.userList.length + (controller.isFetching.value ? 1 : 0),
+                        itemCount: controller.itemCount() + (controller.isFetching.value ? 1 : 0),
                         itemBuilder: (context, index) {
-                          if (index == controller.userList.length) {
+                          // 광고 배너 표시
+                          if (controller.isAdBanner(index)) {
+                            return AdBannerItemWidget(
+                              onTapAdd: () async => controller.onTapAdd(),
+                            );
+                          }
+
+                          // 스크롤 끝까지 닿을 경우, 로딩 인디케이터 보여주고 추가로 fetch
+                          if (index == controller.itemCount()) {
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           }
 
-                          return UserListItemWidget(
-                            nickname: controller.userList[index].login,
-                            avatarUrl: controller.userList[index].avatarUrl,
+                          int userIndex = controller.getUserIndex(index);
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed(GithubPage.USER_DETAIL, arguments: {'username': controller.userList[userIndex].login});
+                            },
+                            child: UserListItemWidget(
+                              nickname: controller.userList[userIndex].login,
+                              avatarUrl: controller.userList[userIndex].avatarUrl,
+                            ),
                           );
                         }),
               );

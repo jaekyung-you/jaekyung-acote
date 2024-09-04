@@ -1,5 +1,6 @@
 import 'package:acote/model/user_response.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../service/usecase/get_users.dart';
 
 class UserListController extends GetxController {
@@ -9,6 +10,7 @@ class UserListController extends GetxController {
   RxBool isFetching = false.obs; // pagination시 사용
   RxList<UserResponse> userList = <UserResponse>[].obs;
   int? lastId;
+  int adInterval = 10;
 
   @override
   Future<void> onInit() async {
@@ -36,5 +38,29 @@ class UserListController extends GetxController {
       lastId = userList.last.id;
     }
     isFetching.value = false;
+  }
+
+  bool isAdBanner(int index) {
+    return (index + 1) % (adInterval + 1) == 0;
+  }
+
+  int getUserIndex(int index) {
+    return index - (index ~/ (adInterval + 1));
+  }
+
+  int itemCount() {
+    return userList.length + (userList.length ~/ adInterval);
+  }
+
+  Future<void> onTapAdd() async {
+    Uri uri = Uri.parse('https://taxrefundgo.kr');
+
+    try {
+      await launchUrl(uri);
+    } catch (e) {
+      print('Fail to launch url: $e');
+      // throw 'Fail to launch url';
+      return;
+    }
   }
 }
