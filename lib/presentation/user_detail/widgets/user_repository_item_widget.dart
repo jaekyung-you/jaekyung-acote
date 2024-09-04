@@ -12,7 +12,6 @@ class UserRepositoryItemWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       width: double.infinity,
-      height: 180,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +35,7 @@ class UserRepositoryItemWidget extends StatelessWidget {
           repo.description != null && repo.description!.isNotEmpty
               ? descriptionContent()
               : const SizedBox(
-                  height: 8,
+                  height: 16,
                 ),
           Row(
             children: [
@@ -62,18 +61,17 @@ class UserRepositoryItemWidget extends StatelessWidget {
   }
 
   Widget descriptionContent() {
-    return Expanded(
-      child: Column(
-        children: [
-          const SizedBox(height: 8),
-          Text(
-            repo.description ?? '',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const SizedBox(height: 8),
+        Text(
+          repo.description ?? '',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontSize: 14),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 

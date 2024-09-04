@@ -26,18 +26,26 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Obx(() {
-              return Text(
-                controller.username,
-                style: const TextStyle(fontSize: 16),
-              );
-            }),
+            Text(
+              controller.username,
+              style: const TextStyle(fontSize: 16),
+            ),
             Obx(
               () {
                 return Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
+                    itemCount: controller.repoVoList.length,
+                    separatorBuilder: (context, index) {
+                      return Container(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: double.infinity,
+                        height: 10,
+                      );
+                    },
                     itemBuilder: (context, index) {
-                      return UserRepositoryItemWidget();
+                      return UserRepositoryItemWidget(
+                        repo: controller.repoVoList[index],
+                      );
                     },
                   ),
                 );
