@@ -1,6 +1,5 @@
 import 'package:acote/service/dio_api_service.dart';
 import 'package:flutter/material.dart';
-
 import 'presentation/user_list_screen.dart';
 
 Future<void> main() async {
