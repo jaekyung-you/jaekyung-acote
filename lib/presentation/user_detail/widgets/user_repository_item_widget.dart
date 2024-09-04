@@ -9,10 +9,12 @@ class UserRepositoryItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(16),
       width: double.infinity,
-      height: 100,
+      height: 180,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -31,12 +33,11 @@ class UserRepositoryItemWidget extends StatelessWidget {
             repo.repoName,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
-          const SizedBox(height: 8),
-          Text(
-            repo.description,
-            style: const TextStyle(fontSize: 14),
-          ),
-          const Spacer(),
+          repo.description != null && repo.description!.isNotEmpty
+              ? descriptionContent()
+              : const SizedBox(
+                  height: 8,
+                ),
           Row(
             children: [
               const Icon(
@@ -48,20 +49,47 @@ class UserRepositoryItemWidget extends StatelessWidget {
                 '${repo.starCount}',
                 style: const TextStyle(fontSize: 14),
               ),
-              const SizedBox(width: 16),
-              CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 24,
-              ),
-              const SizedBox(width: 4),
-              Text(
-                repo.language,
-                style: const TextStyle(fontSize: 14),
-              ),
+              if (repo.language != null && repo.language!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: languageContent(),
+                )
             ],
           )
         ],
       ),
+    );
+  }
+
+  Widget descriptionContent() {
+    return Expanded(
+      child: Column(
+        children: [
+          const SizedBox(height: 8),
+          Text(
+            repo.description ?? '',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 14),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget languageContent() {
+    return Row(
+      children: [
+        CircleAvatar(
+          backgroundColor: Colors.black,
+          radius: 8,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          repo.language!,
+          style: const TextStyle(fontSize: 14),
+        ),
+      ],
     );
   }
 }
