@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../common/widget/common_error_widget.dart';
 import '../../common/widget/header_widget.dart';
 import '../../controller/user_detail_controller.dart';
 import 'widgets/user_repository_item_widget.dart';
@@ -33,21 +34,27 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
             Obx(
               () {
                 return Expanded(
-                  child: ListView.separated(
-                    itemCount: controller.repoVoList.length,
-                    separatorBuilder: (context, index) {
-                      return Container(
-                        color: Colors.grey.withOpacity(0.3),
-                        width: double.infinity,
-                        height: 10,
-                      );
-                    },
-                    itemBuilder: (context, index) {
-                      return UserRepositoryItemWidget(
-                        repo: controller.repoVoList[index],
-                      );
-                    },
-                  ),
+                  child: controller.isLoading.value
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : controller.repoVoList.isEmpty
+                          ? const CommonErrorWidget()
+                          : ListView.separated(
+                              itemCount: controller.repoVoList.length,
+                              separatorBuilder: (context, index) {
+                                return Container(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  width: double.infinity,
+                                  height: 10,
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                return UserRepositoryItemWidget(
+                                  repo: controller.repoVoList[index],
+                                );
+                              },
+                            ),
                 );
               },
             )
