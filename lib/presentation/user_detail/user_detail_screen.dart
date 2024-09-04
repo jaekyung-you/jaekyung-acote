@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../common/widget/header_widget.dart';
 import '../../controller/user_detail_controller.dart';
 import 'widgets/user_repository_item_widget.dart';
 
@@ -26,9 +27,8 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Text(
-              controller.username,
-              style: const TextStyle(fontSize: 16),
+            HeaderWidget(
+              username: controller.username,
             ),
             Obx(
               () {

@@ -17,7 +17,7 @@ class UserRepositoryItemWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatarWidget(width: 44, avatarUrl: repo.avatarUrl),
+              CircleAvatarWidget(width: 32, avatarUrl: repo.avatarUrl),
               const SizedBox(width: 8),
               Text(
                 repo.username,
