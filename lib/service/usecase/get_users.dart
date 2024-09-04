@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../dio_api_service.dart';
 
 class GetUsers {
-  Future<List<UserResponse>?> call({int? lastId}) async {
+  Future<List<UserResponse>> call({int? lastId}) async {
     try {
       Response res = await DioApiBase().get('/users', lastId != null ? {'since': lastId} : null);
       if (res.statusCode == 200 && res.data.isNotEmpty) {
@@ -15,6 +15,6 @@ class GetUsers {
     } catch (e) {
       print('❌Failed to get users: $e');
     }
-    return null;
+    return [];
   }
 }
