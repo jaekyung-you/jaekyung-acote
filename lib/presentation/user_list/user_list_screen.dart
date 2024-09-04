@@ -12,11 +12,17 @@ class UserListScreen extends StatefulWidget {
 
 class _UserListScreenState extends State<UserListScreen> {
   late UserListController controller;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     controller = Get.isRegistered<UserListController>() ? Get.find<UserListController>() : Get.put(UserListController());
+    scrollController.addListener(() {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !controller.isLoading.value) {
+        controller.getMoreUsers();
+      }
+    });
   }
 
   @override
@@ -36,13 +42,19 @@ class _UserListScreenState extends State<UserListScreen> {
                         child: CircularProgressIndicator(),
                       )
                     : ListView.builder(
-                        itemCount: controller.userList.length,
+                        controller: scrollController,
+                        itemCount: controller.userList.length + (controller.isFetching.value ? 1 : 0),
                         itemBuilder: (context, index) {
+                          if (index == controller.userList.length) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
                           return UserListItemWidget(
                             nickname: controller.userList[index].login,
                             avatarUrl: controller.userList[index].avatarUrl,
                           );
-                          // return Text(controller.userList[index].login);
                         }),
               );
             })
