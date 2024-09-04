@@ -25,7 +25,7 @@ class UserDetailController extends GetxController {
     isLoading.value = true;
     repoVoList.clear();
     List<RepositoryResponse>? list = await getRepoList(username: username);
-    if (list != null) {
+    if (list.isNotEmpty) {
       repoVoList.addAll(list.map((e) => convertToRepoVo(e)).toList());
     }
     isLoading.value = false;

@@ -23,7 +23,7 @@ class UserListController extends GetxController {
     isLoading.value = true;
     userList.clear();
     List<UserResponse>? list = await getUsers();
-    if (list != null) {
+    if (list.isNotEmpty) {
       userList.addAll(list);
       lastId = userList.last.id;
     }
