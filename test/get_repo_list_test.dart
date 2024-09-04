@@ -1,4 +1,5 @@
 import 'package:acote/model/repository_response.dart';
+import 'package:acote/service/dio_api_service.dart';
 import 'package:acote/service/usecase/get_repo_list.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,7 +9,10 @@ import 'package:mockito/mockito.dart';
 import 'get_users_test.mocks.dart';
 
 @GenerateMocks([Dio])
-void main() {
+Future<void> main() async {
+  DioApiBase dioApiBase = DioApiBase();
+  await dioApiBase.init();
+
   group('getRepoList', () {
     test('get reop list successfully', () async {
       final dio = MockDio();

@@ -1,4 +1,5 @@
 import 'package:acote/model/user_response.dart';
+import 'package:acote/service/dio_api_service.dart';
 import 'package:acote/service/usecase/get_users.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,15 +26,18 @@ void main() {
 
     test('throws an exception if the http call completes with an error', () async {
       final dio = MockDio();
-
-      when(dio.get('https://api.github.com')).thenAnswer((_) async => Future.value(Response(
-            data: {[]},
+      when(dio.get('https://api.github.com')).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(path: '/users'),
+          response: Response(
             statusCode: 401,
             requestOptions: RequestOptions(path: '/users'),
-          )));
+          ),
+        ),
+      );
 
       GetUsers getUsers = GetUsers();
-      expect(await getUsers(), []);
+      expect(getUsers(), throwsA(isA<DioException>()));
     });
   });
 }

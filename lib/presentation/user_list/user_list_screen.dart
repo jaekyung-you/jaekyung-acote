@@ -64,6 +64,7 @@ class _UserListScreenState extends State<UserListScreen> {
                                   // 광고 배너 표시
                                   if (controller.isAdBanner(index)) {
                                     return AdBannerItemWidget(
+                                      key: Key('banner:${index~/10}'),
                                       onTapAdd: () async => controller.onTapAdd(),
                                     );
                                   }

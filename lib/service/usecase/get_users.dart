@@ -14,7 +14,7 @@ class GetUsers {
       }
     } catch (e) {
       print('❌Failed to get users: $e');
+      rethrow;
     }
-    return [];
   }
 }
