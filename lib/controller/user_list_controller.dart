@@ -19,10 +19,12 @@ class UserListController extends GetxController {
   }
 
   Future<void> getAllUsers() async {
+    if (isLoading.value) return;
     isLoading.value = true;
     userList.clear();
     List<UserResponse>? list = await getUsers();
     if (list != null) {
+      print('호출됨');
       userList.addAll(list);
       lastId = userList.last.id;
     }
@@ -30,7 +32,7 @@ class UserListController extends GetxController {
   }
 
   Future<void> getMoreUsers() async {
-    if (lastId == null) return;
+    if (isFetching.value || lastId == null) return;
     isFetching.value = true;
     List<UserResponse>? list = await getUsers(lastId: lastId);
     if (list != null) {
