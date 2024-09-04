@@ -24,7 +24,6 @@ class UserListController extends GetxController {
     userList.clear();
     List<UserResponse>? list = await getUsers();
     if (list != null) {
-      print('호출됨');
       userList.addAll(list);
       lastId = userList.last.id;
     }
