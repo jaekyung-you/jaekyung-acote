@@ -76,11 +76,13 @@ class _UserListScreenState extends State<UserListScreen> {
                                   }
 
                                   int userIndex = controller.getUserIndex(index);
+                                  String username = controller.userList[userIndex].login;
                                   return InkWell(
                                     onTap: () {
-                                      Get.toNamed(GithubPage.USER_DETAIL, arguments: {'username': controller.userList[userIndex].login});
+                                      Get.toNamed(GithubPage.USER_DETAIL, arguments: {'username': username});
                                     },
                                     child: UserListItemWidget(
+                                      key: Key(username),
                                       username: controller.userList[userIndex].login,
                                       avatarUrl: controller.userList[userIndex].avatarUrl,
                                     ),
