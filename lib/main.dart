@@ -1,6 +1,6 @@
 import 'package:acote/service/dio_api_service.dart';
 import 'package:flutter/material.dart';
-import 'presentation/user_list_screen.dart';
+import 'presentation/user_list/user_list_screen.dart';
 
 Future<void> main() async {
   // http 통신 라이브러리 설정
