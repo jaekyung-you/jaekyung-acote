@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../dio_api_service.dart';
 
 class GetRepoList {
-  Future<List<RepositoryResponse>?> call({required String username}) async {
+  Future<List<RepositoryResponse>> call({required String username}) async {
     try {
       Response res = await DioApiBase().get('/users/$username/repos', null);
       if (res.statusCode == 200 && res.data.isNotEmpty) {
@@ -15,6 +15,6 @@ class GetRepoList {
     } catch (e) {
       print('❌Failed to get repo list: $e');
     }
-    return null;
+    return [];
   }
 }
