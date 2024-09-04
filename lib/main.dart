@@ -1,8 +1,14 @@
+import 'package:acote/service/dio_api_service.dart';
+import 'package:acote/service/usecase/get_users.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/user_list_screen.dart';
 
-void main() {
+Future<void> main() async {
+  // http 통신 라이브러리 설정
+  DioApiBase dioApiBase = DioApiBase();
+  await dioApiBase.init();
+
   runApp(const MyApp());
 }
 

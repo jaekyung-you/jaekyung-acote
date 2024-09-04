@@ -1,11 +1,11 @@
-class License {
+class LicenseResponse {
   String key;
   String name;
   String spdxId;
   String? url;
   String nodeId;
 
-  License({
+  LicenseResponse({
     required this.key,
     required this.name,
     required this.spdxId,
@@ -13,8 +13,8 @@ class License {
     required this.nodeId,
   });
 
-  factory License.fromJson(Map<String, dynamic> json) {
-    return License(
+  factory LicenseResponse.fromJson(Map<String, dynamic> json) {
+    return LicenseResponse(
       key: json['key'],
       name: json['name'],
       spdxId: json['spdx_id'],

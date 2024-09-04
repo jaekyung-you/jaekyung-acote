@@ -1,4 +1,4 @@
-class Owner {
+class OwnerResponse {
   String login;
   int id;
   String nodeId;
@@ -18,7 +18,7 @@ class Owner {
   String type;
   bool siteAdmin;
 
-  Owner({
+  OwnerResponse({
     required this.login,
     required this.id,
     required this.nodeId,
@@ -39,8 +39,8 @@ class Owner {
     required this.siteAdmin,
   });
 
-  factory Owner.fromJson(Map<String, dynamic> json) {
-    return Owner(
+  factory OwnerResponse.fromJson(Map<String, dynamic> json) {
+    return OwnerResponse(
       login: json['login'],
       id: json['id'],
       nodeId: json['node_id'],

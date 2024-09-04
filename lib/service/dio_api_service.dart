@@ -11,7 +11,7 @@ class DioApiBase {
   }
 
   Future<void> init() async {
-    dio.options.baseUrl = 'https://api.github.com/users';
+    dio.options.baseUrl = 'https://api.github.com';
     dio.options.connectTimeout = const Duration(seconds: 5);
     dio.options.receiveTimeout = const Duration(seconds: 3);
   }

@@ -1,4 +1,4 @@
-class User {
+class UserResponse {
   String login;
   int id;
   String nodeId;
@@ -18,7 +18,7 @@ class User {
   String type;
   bool siteAdmin;
 
-  User({
+  UserResponse({
     required this.login,
     required this.id,
     required this.nodeId,
@@ -39,8 +39,8 @@ class User {
     required this.siteAdmin,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory UserResponse.fromJson(Map<String, dynamic> json) {
+    return UserResponse(
       login: json['login'],
       id: json['id'],
       nodeId: json['node_id'],

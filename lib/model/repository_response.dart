@@ -1,13 +1,13 @@
 import 'package:acote/model/license_response.dart';
 import 'package:acote/model/owner_response.dart';
 
-class Repository {
+class RepositoryResponse {
   int id;
   String nodeId;
   String name;
   String fullName;
   bool private;
-  Owner owner;
+  OwnerResponse owner;
   String htmlUrl;
   String? description;
   bool fork;
@@ -71,7 +71,7 @@ class Repository {
   bool archived;
   bool disabled;
   int openIssuesCount;
-  License? license;
+  LicenseResponse? license;
   bool allowForking;
   bool isTemplate;
   bool webCommitSignoffRequired;
@@ -82,7 +82,7 @@ class Repository {
   int watchers;
   String defaultBranch;
 
-  Repository({
+  RepositoryResponse({
     required this.id,
     required this.nodeId,
     required this.name,
@@ -164,14 +164,14 @@ class Repository {
     required this.defaultBranch,
   });
 
-  factory Repository.fromJson(Map<String, dynamic> json) {
-    return Repository(
+  factory RepositoryResponse.fromJson(Map<String, dynamic> json) {
+    return RepositoryResponse(
       id: json['id'],
       nodeId: json['node_id'],
       name: json['name'],
       fullName: json['full_name'],
       private: json['private'],
-      owner: Owner.fromJson(json['owner']),
+      owner: OwnerResponse.fromJson(json['owner']),
       htmlUrl: json['html_url'],
       description: json['description'],
       fork: json['fork'],
@@ -235,7 +235,7 @@ class Repository {
       archived: json['archived'],
       disabled: json['disabled'],
       openIssuesCount: json['open_issues_count'],
-      license: json['license'] != null ? License.fromJson(json['license']) : null,
+      license: json['license'] != null ? LicenseResponse.fromJson(json['license']) : null,
       allowForking: json['allow_forking'],
       isTemplate: json['is_template'],
       webCommitSignoffRequired: json['web_commit_signoff_required'],
