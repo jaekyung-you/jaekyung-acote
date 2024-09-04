@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../common/widget/circle_avatar_widget.dart';
 
 class UserListItemWidget extends StatelessWidget {
-  final String nickname;
+  final String username;
   final String avatarUrl;
 
-  const UserListItemWidget({super.key, required this.nickname, required this.avatarUrl});
+  const UserListItemWidget({super.key, required this.username, required this.avatarUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,10 @@ class UserListItemWidget extends StatelessWidget {
       height: 64,
       child: Row(
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl)),
-          ),
+          CircleAvatarWidget(width: 44, avatarUrl: avatarUrl),
           const SizedBox(width: 8),
           Text(
-            nickname,
+            username,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           )
         ],

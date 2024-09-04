@@ -78,7 +78,7 @@ class _UserListScreenState extends State<UserListScreen> {
                                   Get.toNamed(GithubPage.USER_DETAIL, arguments: {'username': controller.userList[userIndex].login});
                                 },
                                 child: UserListItemWidget(
-                                  nickname: controller.userList[userIndex].login,
+                                  username: controller.userList[userIndex].login,
                                   avatarUrl: controller.userList[userIndex].avatarUrl,
                                 ),
                               );
