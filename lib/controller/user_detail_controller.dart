@@ -14,7 +14,7 @@ class UserDetailController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    if (Get.arguments['username'] != null) {
+    if (Get.arguments != null && Get.arguments['username'] != null) {
       username = Get.arguments['username'];
     }
     await getAllRepos();

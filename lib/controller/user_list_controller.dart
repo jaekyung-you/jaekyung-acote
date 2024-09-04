@@ -60,7 +60,6 @@ class UserListController extends GetxController {
       await launchUrl(uri);
     } catch (e) {
       print('Fail to launch url: $e');
-      // throw 'Fail to launch url';
       return;
     }
   }
