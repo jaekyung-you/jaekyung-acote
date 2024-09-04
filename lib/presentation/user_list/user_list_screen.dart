@@ -1,7 +1,6 @@
 import 'package:acote/presentation/user_list/user_list_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controller/user_list_controller.dart';
 
 class UserListScreen extends StatefulWidget {

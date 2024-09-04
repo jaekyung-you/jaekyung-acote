@@ -11,13 +11,16 @@ class UserListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      height: 54,
+      height: 64,
       child: Row(
         children: [
           Container(
             width: 44,
             height: 44,
-            child: CachedNetworkImage(imageUrl: avatarUrl),
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: ClipOval(child: CachedNetworkImage(imageUrl: avatarUrl)),
           ),
           const SizedBox(width: 8),
           Text(
