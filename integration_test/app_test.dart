@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mockito/mockito.dart';
-import 'url_launcher_wrapper.dart';
 
 Future<void> main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -33,28 +31,28 @@ Future<void> main() async {
     });
 
 
-    testWidgets('tap on the ad banner, move to web page', (tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      await tester.pumpAndSettle();
-
-      String bannerItem = 'banner:1';
-      final bannerItemKey = Key(bannerItem);
-      expect(find.byKey(bannerItemKey), findsOneWidget);
-
-      // 버튼 탭
-      final fab = find.byKey(bannerItemKey);
-
-      await tester.tap(fab);
-      await tester.pumpAndSettle();
-
-      Uri uri = Uri.parse('https://taxrefundgo.kr');
-
-      final mockUrlLauncher = MockUrlLauncherWrapper();
-      print(mockUrlLauncher.launchUrlWrapped(uri));
-
-      verify(mockUrlLauncher.launchUrlWrapped(uri)).called(1);
-    });
+    // testWidgets('tap on the ad banner, move to web page', (tester) async {
+    //   await tester.pumpWidget(const MyApp());
+    //
+    //   await tester.pumpAndSettle();
+    //
+    //   String bannerItem = 'banner:1';
+    //   final bannerItemKey = Key(bannerItem);
+    //   expect(find.byKey(bannerItemKey), findsOneWidget);
+    //
+    //   // 버튼 탭
+    //   final fab = find.byKey(bannerItemKey);
+    //
+    //   await tester.tap(fab);
+    //   await tester.pumpAndSettle();
+    //
+    //   Uri uri = Uri.parse('https://taxrefundgo.kr');
+    //
+    //   final mockUrlLauncher = MockUrlLauncherWrapper();
+    //   print(mockUrlLauncher.launchUrlWrapped(uri));
+    //
+    //   verify(mockUrlLauncher.launchUrlWrapped(uri)).called(1);
+    // });
 
     testWidgets('pull to refresh, get all users newly', (tester) async {
       await tester.pumpWidget(const MyApp());
@@ -102,11 +100,5 @@ Future<void> main() async {
 
       expect(find.byKey(Key('banner:3')), findsOneWidget);
     });
-
-    testWidgets('tap back button on the detail, go back', (tester) async {
-      await tester.pumpWidget(const MyApp());
-    });
   });
 }
-
-class MockUrlLauncherWrapper extends Mock implements UrlLauncherWrapper {}

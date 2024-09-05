@@ -1,5 +1,6 @@
 import 'package:acote/controller/user_list_controller.dart';
 import 'package:acote/service/dio_api_service.dart';
+import 'package:acote/service/usecase/get_users.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
@@ -23,13 +24,14 @@ Future<void> main() async {
     });
 
     test('should get user index including ad', () {
-
+      int index = 11;
+      expect(controller.getUserIndex(index), 10);
     });
 
-    test('should get user list item count including ad', () {});
-
-    test('succeed to launch url', () {});
-
-    test('fail to launch url', () {});
+    test('should get user list item count including ad', () async {
+      GetUsers getUsers = GetUsers();
+      await getUsers();
+      expect(controller.itemCount(), 33);
+    });
   });
 }
