@@ -14,7 +14,7 @@ class CommonErrorWidget extends StatelessWidget {
             color: Colors.grey,
             size: 48,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             '에러가 발생했습니다.\n잠시 후, 다시 시도해주세요.',
             textAlign: TextAlign.center,

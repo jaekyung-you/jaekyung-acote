@@ -34,7 +34,7 @@ class UserListController extends GetxController {
     if (isFetching.value || lastId == null) return;
     isFetching.value = true;
     List<UserResponse>? list = await getUsers(lastId: lastId);
-    if (list != null) {
+    if (list.isNotEmpty) {
       userList.addAll(list);
       lastId = userList.last.id;
     }

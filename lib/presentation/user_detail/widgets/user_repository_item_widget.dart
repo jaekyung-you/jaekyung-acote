@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../common/language_color.dart';
 import '../../../common/widget/circle_avatar_widget.dart';
 import '../../../model/vo/repository_vo.dart';
 
@@ -76,10 +77,15 @@ class UserRepositoryItemWidget extends StatelessWidget {
   }
 
   Widget languageContent() {
+    Color color = Colors.black;
+    if (languageColor.containsKey(repo.language)) {
+      color = Color(int.parse(languageColor[repo.language]!.replaceFirst('#', '0xFF')));
+    }
+
     return Row(
       children: [
         CircleAvatar(
-          backgroundColor: Colors.black,
+          backgroundColor: color,
           radius: 8,
         ),
         const SizedBox(width: 4),
