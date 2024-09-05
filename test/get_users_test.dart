@@ -9,7 +9,10 @@ import 'package:mockito/mockito.dart';
 import 'get_users_test.mocks.dart';
 
 @GenerateMocks([Dio])
-void main() {
+Future<void> main() async {
+  DioApiBase dioApiBase = DioApiBase();
+  await dioApiBase.init();
+
   group('getUsers', () {
     test('get users successfully', () async {
       final dio = MockDio();

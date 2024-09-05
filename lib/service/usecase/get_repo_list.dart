@@ -14,7 +14,7 @@ class GetRepoList {
       }
     } catch (e) {
       print('❌Failed to get repo list: $e');
+      rethrow;
     }
-    return [];
   }
 }
